@@ -11,7 +11,7 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-- script: docker build -t $(dockerId)/$(imageName) .  # add options to this command to meet your needs
+- script: docker build -t $(docker_registry_addr)/$(imageName) .  # add options to this command to meet your needs
   displayName: 'Docker Build'
 
 - script: |
@@ -20,7 +20,7 @@ steps:
   displayName: 'Run a multi-line script'
 
 - script: |
-    docker login -u $(dockerId) -p $(pswd) <docker-registry-url>
-    docker push $(dockerId)/$(imageName)
+    docker login -u $(docker_registry_user) -p $(docker_registry_passwd) $(docker_registry_addr)
+    docker push $(docker_registry_addr)/$(imageName)
   displayName: 'Docker login and docker push'
 
