@@ -9,12 +9,13 @@ steps:
   displayName: 'Docker Build'
 
 - script: |
-    echo I am going.
-    echo See https://dev.azure.com/ipcme/
-  displayName: 'Run a multi-line script'
+    docker login -u $(docker_registry_user) -p $(docker_registry_passwd) $(docker_registry_addr)
+    #docker push $(docker_registry_addr)/$(image_name)
+    echo fuck
+  displayName: 'Docker login'
 
 - script: |
-    docker login -u $(docker_registry_user) -p $(docker_registry_passwd) $(docker_registry_addr)
     docker push $(docker_registry_addr)/$(image_name)
-  displayName: 'Docker login and docker push'
+    echo fuck
+  displayName: 'Docker push'
 
