@@ -1,9 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-# https://dev.azure.com/ipcme/
-
 trigger:
 - master
 
@@ -11,16 +5,16 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-- script: docker build -t $(docker_registry_addr)/$(imageName) .  # add options to this command to meet your needs
+- script: docker build -t $(docker_registry_addr)/$(image_name) .  # add options to this command to meet your needs
   displayName: 'Docker Build'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
+    echo I am going.
+    echo See https://dev.azure.com/ipcme/
   displayName: 'Run a multi-line script'
 
 - script: |
     docker login -u $(docker_registry_user) -p $(docker_registry_passwd) $(docker_registry_addr)
-    docker push $(docker_registry_addr)/$(imageName)
+    docker push $(docker_registry_addr)/$(image_name)
   displayName: 'Docker login and docker push'
 
