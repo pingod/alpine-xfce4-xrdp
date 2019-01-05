@@ -9,13 +9,13 @@ steps:
   displayName: 'Docker Build'
 
 - script: |
+    echo fuck
     docker login -u $(docker_registry_user) -p $(docker_registry_passwd) $(docker_registry_addr)
     #docker push $(docker_registry_addr)/$(image_name)
-    echo fuck
   displayName: 'Docker login'
 
 - script: |
-    docker push $(docker_registry_addr)/$(image_name)
     echo fuck
+    docker push $(docker_registry_addr)/$(image_name)
   displayName: 'Docker push'
 
